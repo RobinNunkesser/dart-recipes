@@ -21,7 +21,40 @@ class _MyHomePageState extends State<MyHomePage> {
 
   @override
   Widget build(BuildContext context) {
-    var bottomNavBar = PlatformNavBar(
+    var items = [
+      BottomNavigationBarItem(
+        title: Text('Flag'),
+        icon: PlatformWidget(
+          ios: (_) => Icon(
+            CupertinoIcons.flag,
+          ),
+          android: (_) => Icon(Icons.flag),
+        ),
+      ),
+      BottomNavigationBarItem(
+        title: Text('Book'),
+        icon: PlatformWidget(
+          ios: (_) => Icon(CupertinoIcons.book),
+          android: (_) => Icon(Icons.book),
+        ),
+      ),
+      BottomNavigationBarItem(
+        title: Text('Phone'),
+        icon: PlatformWidget(
+          ios: (_) => Icon(CupertinoIcons.phone),
+          android: (_) => Icon(Icons.phone),
+        ),
+      ),
+      BottomNavigationBarItem(
+        title: Text('Home'),
+        icon: PlatformWidget(
+          ios: (_) => Icon(CupertinoIcons.home),
+          android: (_) => Icon(Icons.home),
+        ),
+      ),
+    ];
+
+    /*var bottomNavBar = PlatformNavBar(
       currentIndex: _selectedTabIndex,
       itemChanged: (index) => setState(
             () {
@@ -36,52 +69,14 @@ class _MyHomePageState extends State<MyHomePage> {
             backgroundColor: Colors.lightBlue,
             type: BottomNavigationBarType.fixed,
           ),
-      items: [
-        BottomNavigationBarItem(
-          title: Text('Flag'),
-          icon: PlatformWidget(
-            ios: (_) => Icon(
-                  CupertinoIcons.flag,
-                ),
-            android: (_) => Icon(Icons.flag),
-          ),
-        ),
-        BottomNavigationBarItem(
-          title: Text('Book'),
-          icon: PlatformWidget(
-            ios: (_) => Icon(CupertinoIcons.book),
-            android: (_) => Icon(Icons.book),
-          ),
-        ),
-        BottomNavigationBarItem(
-          title: Text('Phone'),
-          icon: PlatformWidget(
-            ios: (_) => Icon(CupertinoIcons.phone),
-            android: (_) => Icon(Icons.phone),
-          ),
-        ),
-        BottomNavigationBarItem(
-          title: Text('Home'),
-          icon: PlatformWidget(
-            ios: (_) => Icon(CupertinoIcons.home),
-            android: (_) => Icon(Icons.home),
-          ),
-        ),
-      ],
-    );
+      items: ,
+    );*/
 
     var tabs = [FlagPage(),BookPage(),PhonePage(),HomePage()];
 
-    var tabBuilder = (BuildContext context, int index) {
-      return CupertinoTabView(builder: (BuildContext context) {
-        return tabs[index];
-      });
-    };
-
     return PlatformTabScaffold(
-      title: 'Title',
-      tabBar: bottomNavBar,
-      tabBuilder: tabBuilder,
+      items: items,
+      tabs: tabs,
       child: Center(
         child: Text('Hello World'),
       ),

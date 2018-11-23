@@ -3,30 +3,36 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter_platform_widgets/flutter_platform_widgets.dart';// hide PlatformNavBar;
 
 class PlatformTabScaffold extends PlatformWidgetBase<CupertinoTabScaffold, Scaffold> {
-  final String title;
   final Widget child;
-  final PlatformNavBar tabBar;
-  final IndexedWidgetBuilder tabBuilder;
+  final List<BottomNavigationBarItem> items;
+  final List<Widget> tabs;
 
-  PlatformTabScaffold({this.title, this.child, this.tabBar, this.tabBuilder});
+  PlatformTabScaffold({this.child, this.items, this.tabs});
 
   @override
   Scaffold createAndroidWidget(BuildContext context) {
-    return new Scaffold(
+    return Scaffold(
       appBar: new AppBar(
         title: new Text('Test'),
       ),
       body: child,
-      bottomNavigationBar: tabBar.createAndroidWidget(context),
+      bottomNavigationBar: null,//tabBar.createAndroidWidget(context),
     );
   }
 
   @override
   CupertinoTabScaffold createIosWidget(BuildContext context) {
-    return new CupertinoTabScaffold(
-      tabBar: tabBar.createIosWidget(context),
-      tabBuilder: tabBuilder,
+    var tabBar = CupertinoTabBar(
+      items: items,
+    );
+
+    return CupertinoTabScaffold(
+      tabBar: tabBar,
+      tabBuilder: (BuildContext context, int index) {
+        return CupertinoTabView(builder: (BuildContext context) {
+          return tabs[index];
+        });
+      },
     );
   }
-
 }
