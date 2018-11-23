@@ -8,7 +8,6 @@ import 'book_page.dart';
 import 'phone_page.dart';
 import 'platform_tab_scaffold.dart';
 
-
 class MyHomePage extends StatefulWidget {
   MyHomePage({Key key}) : super(key: key);
 
@@ -54,32 +53,22 @@ class _MyHomePageState extends State<MyHomePage> {
       ),
     ];
 
-    /*var bottomNavBar = PlatformNavBar(
-      currentIndex: _selectedTabIndex,
-      itemChanged: (index) => setState(
-            () {
-              _selectedTabIndex = index;
-              /*Navigator.push(
-            context,
-            MaterialPageRoute(builder: (context) => SubPage()),
-          );*/
-            },
-          ),
-      android: (_) => MaterialNavBarData(
-            backgroundColor: Colors.lightBlue,
-            type: BottomNavigationBarType.fixed,
-          ),
-      items: ,
-    );*/
-
     var tabs = [FlagPage(),BookPage(),PhonePage(),HomePage()];
 
     return PlatformTabScaffold(
+      currentIndex: _selectedTabIndex,
+      itemChanged: (index) => setState(
+            () {
+          _selectedTabIndex = index;
+          Navigator.push(
+            context,
+            MaterialPageRoute(builder: (context) => tabs[_selectedTabIndex]),
+          );
+        },
+      ),
       items: items,
       tabs: tabs,
-      child: Center(
-        child: Text('Hello World'),
-      ),
+      child: tabs[_selectedTabIndex],
     );
   }
 }
