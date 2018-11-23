@@ -4,8 +4,10 @@ import 'package:flutter_platform_widgets/flutter_platform_widgets.dart';
 
 import 'flag_page.dart';
 import 'home_page.dart';
+import 'book_page.dart';
+import 'phone_page.dart';
 import 'platform_tab_scaffold.dart';
-// hide PlatformNavBar, MaterialNavBarData, CupertinoNavigationBarData;
+
 
 class MyHomePage extends StatefulWidget {
   MyHomePage({Key key}) : super(key: key);
@@ -68,44 +70,12 @@ class _MyHomePageState extends State<MyHomePage> {
       ],
     );
 
+    var tabs = [FlagPage(),BookPage(),PhonePage(),HomePage()];
+
     var tabBuilder = (BuildContext context, int index) {
-      var tabView1 = CupertinoTabView(builder: (BuildContext context) {
-        return FlagPage();
+      return CupertinoTabView(builder: (BuildContext context) {
+        return tabs[index];
       });
-
-      var tabView2 = CupertinoTabView(builder: (BuildContext context) {
-        return CupertinoPageScaffold(
-          navigationBar: CupertinoNavigationBar(
-            middle: Text('Page 1 of tab $index'),
-          ),
-          child: Center(
-            child: Text('2'),
-          ),
-        );
-      });
-
-      var tabView3 = CupertinoTabView(builder: (BuildContext context) {
-        return CupertinoPageScaffold(
-          navigationBar: CupertinoNavigationBar(
-            middle: Text('Page 1 of tab $index'),
-          ),
-          child: Center(
-            child: Text('3'),
-          ),
-        );
-      });
-
-      var tabView4 = CupertinoTabView(builder: (BuildContext context) {
-        return HomePage();
-      });
-
-      var pages = [
-        tabView1,
-        tabView2,
-        tabView3,
-        tabView4,
-      ];
-      return pages[index];
     };
 
     return PlatformTabScaffold(
