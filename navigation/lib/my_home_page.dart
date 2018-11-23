@@ -17,9 +17,13 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
   int _selectedTabIndex = 0;
+  Widget _selectedTab;
 
   @override
   Widget build(BuildContext context) {
+    var tabs = [FlagPage(),BookPage(),PhonePage(),HomePage()];
+    _selectedTab = tabs[_selectedTabIndex];
+
     var items = [
       BottomNavigationBarItem(
         title: Text('Flag'),
@@ -53,22 +57,19 @@ class _MyHomePageState extends State<MyHomePage> {
       ),
     ];
 
-    var tabs = [FlagPage(),BookPage(),PhonePage(),HomePage()];
+
 
     return PlatformTabScaffold(
       currentIndex: _selectedTabIndex,
       itemChanged: (index) => setState(
             () {
           _selectedTabIndex = index;
-          Navigator.push(
-            context,
-            MaterialPageRoute(builder: (context) => tabs[_selectedTabIndex]),
-          );
+          _selectedTab = tabs[_selectedTabIndex];
         },
       ),
       items: items,
       tabs: tabs,
-      child: tabs[_selectedTabIndex],
+      child: _selectedTab,
     );
   }
 }

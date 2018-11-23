@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:flutter_platform_widgets/flutter_platform_widgets.dart';// hide PlatformNavBar;
+import 'package:flutter_platform_widgets/flutter_platform_widgets.dart';
 
 class PlatformTabScaffold extends PlatformWidgetBase<CupertinoTabScaffold, Scaffold> {
   final Widget child;
@@ -8,23 +8,25 @@ class PlatformTabScaffold extends PlatformWidgetBase<CupertinoTabScaffold, Scaff
   final List<Widget> tabs;
   final int currentIndex;
   final ValueChanged<int> itemChanged;
-  static PlatformNavBar platformNavBar;
 
   PlatformTabScaffold({this.child, this.items, this.tabs, this.currentIndex, this.itemChanged});
 
   @override
   Scaffold createAndroidWidget(BuildContext context) {
-    platformNavBar = PlatformNavBar(
-      items: items,
-      currentIndex: currentIndex,
-      itemChanged: itemChanged,
-      android: (_) => MaterialNavBarData(
+    var bottomNavigationBar = BottomNavigationBar(
+        items: items,
+        currentIndex: currentIndex,
+        onTap: itemChanged,
         type: BottomNavigationBarType.fixed,
-      ),
+    );
+
+    var bottomAppBar = BottomAppBar(
+      child: bottomNavigationBar,
     );
 
     return Scaffold(
       body: child,
+      bottomNavigationBar: bottomAppBar,
     );
   }
 

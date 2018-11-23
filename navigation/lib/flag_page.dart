@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_platform_widgets/flutter_platform_widgets.dart';
 import 'sub_page.dart';
-import 'platform_tab_scaffold.dart';
 
 class FlagPage extends StatelessWidget {
   FlagPage({Key key}) : super(key: key);
@@ -23,7 +22,6 @@ class FlagPage extends StatelessWidget {
           },
         ),
       ),
-      bottomNavBar: PlatformTabScaffold.platformNavBar,
     );
   }
 }
