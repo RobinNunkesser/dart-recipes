@@ -8,25 +8,23 @@ class PlatformTabScaffold extends PlatformWidgetBase<CupertinoTabScaffold, Scaff
   final List<Widget> tabs;
   final int currentIndex;
   final ValueChanged<int> itemChanged;
+  static PlatformNavBar platformNavBar;
 
   PlatformTabScaffold({this.child, this.items, this.tabs, this.currentIndex, this.itemChanged});
 
   @override
   Scaffold createAndroidWidget(BuildContext context) {
-    var bottomNavigationBar = BottomNavigationBar(
-        items: items,
-        currentIndex: currentIndex,
-        onTap: itemChanged,
+    platformNavBar = PlatformNavBar(
+      items: items,
+      currentIndex: currentIndex,
+      itemChanged: itemChanged,
+      android: (_) => MaterialNavBarData(
         type: BottomNavigationBarType.fixed,
-    );
-
-    var bottomAppBar = BottomAppBar(
-      child: bottomNavigationBar,
+      ),
     );
 
     return Scaffold(
       body: child,
-      bottomNavigationBar: bottomAppBar,
     );
   }
 

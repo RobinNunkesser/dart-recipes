@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_platform_widgets/flutter_platform_widgets.dart';
+import 'platform_tab_scaffold.dart';
 
 class SubPage extends StatelessWidget {
-  SubPage({Key key, this.title}) : super(key: key);
-
-  final String title;
+  SubPage({Key key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -15,6 +14,7 @@ class SubPage extends StatelessWidget {
       body: Center(
         child: Text('Hello from sub page.'),
       ),
+      bottomNavBar: PlatformTabScaffold.platformNavBar,
     );
   }
 }
