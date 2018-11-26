@@ -1,5 +1,5 @@
-import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_platform_widgets/flutter_platform_widgets.dart';
 
 class PlatformPicker extends PlatformWidgetBase<DecoratedBox, InputDecorator> {
@@ -10,7 +10,11 @@ class PlatformPicker extends PlatformWidgetBase<DecoratedBox, InputDecorator> {
   final ValueChanged<int> onSelectedItemChanged;
 
   PlatformPicker(
-      {this.label, this.selectedIndex, this.items, this.onChanged, this.onSelectedItemChanged});
+      {this.label,
+      this.selectedIndex,
+      this.items,
+      this.onChanged,
+      this.onSelectedItemChanged});
 
   @override
   InputDecorator createAndroidWidget(BuildContext context) {
@@ -33,8 +37,21 @@ class PlatformPicker extends PlatformWidgetBase<DecoratedBox, InputDecorator> {
     );
   }
 
-  Widget _buildBottomPicker(Widget picker) {
-    return Container(
+  @override
+  DecoratedBox createIosWidget(BuildContext context) {
+    var picker = CupertinoPicker(
+      scrollController: FixedExtentScrollController(initialItem: selectedIndex),
+      itemExtent: 32.0,
+      backgroundColor: CupertinoColors.white,
+      onSelectedItemChanged: onSelectedItemChanged,
+      children: List<Widget>.generate(items.length, (int index) {
+        return Center(
+          child: Text(items[index]),
+        );
+      }),
+    );
+
+    var bottomPicker = Container(
       height: 216.0,
       padding: const EdgeInsets.only(top: 6.0),
       color: CupertinoColors.white,
@@ -53,10 +70,8 @@ class PlatformPicker extends PlatformWidgetBase<DecoratedBox, InputDecorator> {
         ),
       ),
     );
-  }
 
-  Widget _buildMenu(List<Widget> children) {
-    return Container(
+    var menu = Container(
       decoration: const BoxDecoration(
         color: CupertinoColors.white,
         border: Border(
@@ -78,16 +93,19 @@ class PlatformPicker extends PlatformWidgetBase<DecoratedBox, InputDecorator> {
             ),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: children,
+              children: [
+                Text(label),
+                Text(
+                  items[selectedIndex],
+                  style: const TextStyle(color: CupertinoColors.inactiveGray),
+                ),
+              ],
             ),
           ),
         ),
       ),
     );
-  }
 
-  @override
-  DecoratedBox createIosWidget(BuildContext context) {
     return DecoratedBox(
       decoration: const BoxDecoration(color: Color(0xFFEFEFF4)),
       child: ListView(
@@ -96,40 +114,15 @@ class PlatformPicker extends PlatformWidgetBase<DecoratedBox, InputDecorator> {
           GestureDetector(
             onTap: () async {
               await showCupertinoModalPopup<void>(
-                context: context,
-                builder: (BuildContext context) {
-                  return _buildBottomPicker(
-                    CupertinoPicker(
-                        scrollController: FixedExtentScrollController(
-                            initialItem: selectedIndex),
-                        itemExtent: 32.0,
-                        backgroundColor: CupertinoColors.white,
-                        onSelectedItemChanged: onSelectedItemChanged,
-                        children: List <Widget>.generate(items.length, (int index) {
-                      return Center(child:
-                      Text(items[index]),
-                      );
-                    }),
-                  ),);
-                },
-              );
+                  context: context,
+                  builder: (BuildContext context) {
+                    return bottomPicker;
+                  });
             },
-            child: _buildMenu(
-              <Widget>[
-                Text(label),
-                Text(
-                  items[selectedIndex],
-                  style: const TextStyle(
-                      color: CupertinoColors.inactiveGray
-                  ),
-                ),
-              ],
-            ),
+            child: menu,
           ),
         ],
       ),
     );
-
   }
-
 }
