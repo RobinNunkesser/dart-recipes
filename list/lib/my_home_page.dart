@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter_platform_widgets/flutter_platform_widgets.dart';
+
 import 'item.dart';
+import 'platform_list_tile.dart';
 
 class MyHomePage extends StatefulWidget {
   MyHomePage({Key key, this.title}) : super(key: key);
@@ -11,31 +14,34 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  var _items = [Item(title: "Title 1",subtitle: "Subtitle 1"),
-  Item(title: "Title 2",subtitle: "Subtitle 2"),
-  Item(title: "Title 3",subtitle: "Subtitle 3")];
-
-  Widget buildListTile(BuildContext context, Item item) {
-    return MergeSemantics(
-      child: ListTile(
-        title: Text(item.title),
-        subtitle: Text(item.subtitle),
-        dense: false,
-      ),
-    );
-  }
 
   @override
   Widget build(BuildContext context) {
-
     return PlatformScaffold(
       appBar: PlatformAppBar(
         title: Text(widget.title),
+        trailingActions: <Widget>[
+          PlatformIconButton(
+            onPressed: () {
+              setState(() {
+                items.add(Item(title:'New item',subtitle: 'Subtitle'));
+              });
+            },
+            iosIcon: Icon(
+              CupertinoIcons.add,
+              size: 28.0,
+            ),
+            androidIcon: Icon(Icons.add),
+          ),
+        ],
+
       ),
       body: ListView.builder(
-          itemCount: _items.length,
-          itemBuilder: (context, index) => buildListTile(context,_items[index])
-      ),
+          itemCount: items.length,
+          itemBuilder: (context, index) => PlatformListTile(
+                title: items[index].title,
+                subtitle: items[index].subtitle,
+              )),
     );
   }
 }
