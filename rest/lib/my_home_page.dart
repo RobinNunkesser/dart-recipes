@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:http/http.dart' as http;
-import 'dart:convert';
 import 'response_entity.dart';
+import 'response.dart';
+import 'input_boundary.dart';
+import 'interactor.dart';
+import 'output_boundary.dart';
 
 class MyHomePage extends StatefulWidget {
   MyHomePage({Key key, this.title}) : super(key: key);
@@ -12,24 +14,15 @@ class MyHomePage extends StatefulWidget {
   _MyHomePageState createState() => _MyHomePageState();
 }
 
-class _MyHomePageState extends State<MyHomePage> {
+class _MyHomePageState extends State<MyHomePage> implements OutputBoundary {
+  InputBoundary inputBoundary = Interactor();
   ResponseEntity _response;
-
-  Future<Null> fetchData() async {
-    final response = await http.get('https://httpbin.org/get');
-    final responseJson = json.decode(response.body);
-
-    setState(() {
-      _response = ResponseEntity.fromJson(responseJson);
-    });
-  }
 
   @override
   void initState() {
     super.initState();
-    fetchData();
+    inputBoundary.send(outputBoundary: this);
   }
-
 
   @override
   Widget build(BuildContext context) {
@@ -42,10 +35,48 @@ class _MyHomePageState extends State<MyHomePage> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
             Text('Response:'),
-            Text(_response?.toString()),// == null ? '' : ''),
+            Text(_response.toString()),
           ],
         ),
       ),
+    );
+  }
+
+  @override
+  receive({Response response}) {
+    if (response is Success) {
+      setState(() {
+        _response = (response as Success).value;
+      });
+    } else if (response is Failure){
+      displayError(context, (response).error);
+    }
+  }
+
+  Future<void> displayError(BuildContext context, Exception e) async {
+    return showDialog<void>(
+      context: context,
+      barrierDismissible: false, // user must tap button!
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: Text('Fehler'),
+          content: SingleChildScrollView(
+            child: ListBody(
+              children: <Widget>[
+                Text(e.toString()),
+              ],
+            ),
+          ),
+          actions: <Widget>[
+            FlatButton(
+              child: Text('OK'),
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+            ),
+          ],
+        );
+      },
     );
   }
 }
