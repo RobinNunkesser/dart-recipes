@@ -46,7 +46,7 @@ class _MyHomePageState extends State<MyHomePage> implements OutputBoundary {
   receive({Response response}) {
     if (response is Success) {
       setState(() {
-        _response = (response as Success).value;
+        _response = response.value;
       });
     } else if (response is Failure){
       displayError(context, (response).error);
