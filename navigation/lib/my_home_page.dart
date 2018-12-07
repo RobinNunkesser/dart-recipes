@@ -28,9 +28,7 @@ class _MyHomePageState extends State<MyHomePage> {
       BottomNavigationBarItem(
         title: Text('Flag'),
         icon: PlatformWidget(
-          ios: (_) => Icon(
-            CupertinoIcons.flag,
-          ),
+          ios: (_) => Icon(CupertinoIcons.flag),
           android: (_) => Icon(Icons.flag),
         ),
       ),
@@ -56,8 +54,6 @@ class _MyHomePageState extends State<MyHomePage> {
         ),
       ),
     ];
-
-
 
     return PlatformTabScaffold(
       currentIndex: _selectedTabIndex,

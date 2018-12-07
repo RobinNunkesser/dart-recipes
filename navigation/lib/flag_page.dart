@@ -15,10 +15,10 @@ class FlagPage extends StatelessWidget {
         child: PlatformButton(
           child: Text('Display Sub Page'),
           onPressed: () {
-          Navigator.push(
-          context,
-          MaterialPageRoute(builder: (context) => SubPage()),
-        );
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => SubPage()),
+            );
           },
         ),
       ),
