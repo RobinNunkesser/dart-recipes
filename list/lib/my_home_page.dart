@@ -14,7 +14,6 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-
   @override
   Widget build(BuildContext context) {
     return PlatformScaffold(
@@ -24,7 +23,7 @@ class _MyHomePageState extends State<MyHomePage> {
           PlatformIconButton(
             onPressed: () {
               setState(() {
-                items.add(Item(title:'New item',subtitle: 'Subtitle'));
+                items.add(Item(title: 'New item', subtitle: 'Subtitle'));
               });
             },
             iosIcon: Icon(
@@ -34,7 +33,6 @@ class _MyHomePageState extends State<MyHomePage> {
             androidIcon: Icon(Icons.add),
           ),
         ],
-
       ),
       body: ListView.builder(
           itemCount: items.length,
