@@ -49,7 +49,7 @@ class _MyHomePageState extends State<MyHomePage> implements OutputBoundary {
         _response = response.value;
       });
     } else if (response is Failure){
-      displayError(context, (response).error);
+      displayError(context, response.error);
     }
   }
 
