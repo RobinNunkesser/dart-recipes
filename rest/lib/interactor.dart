@@ -6,7 +6,7 @@ import 'http_bin_gateway.dart';
 class Interactor implements InputBoundary {
   @override
   send({request, OutputBoundary outputBoundary}) async {
-    var response = await HttpBinGateway().fetchData();
+    var response = HttpBinGateway().fetchData();
     outputBoundary.receive(response: response);
   }
 }

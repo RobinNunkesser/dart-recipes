@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'response_entity.dart';
-import 'response.dart';
 import 'input_boundary.dart';
 import 'interactor.dart';
 import 'output_boundary.dart';
@@ -43,14 +42,10 @@ class _MyHomePageState extends State<MyHomePage> implements OutputBoundary {
   }
 
   @override
-  receive({Response response}) {
-    if (response is Success) {
-      setState(() {
-        _response = response.value;
-      });
-    } else if (response is Failure){
-      displayError(context, response.error);
-    }
+  receive({Future response}) {
+    response
+        .then((value) => setState(() => _response = value))
+        .catchError((error) => displayError(context, error));
   }
 
   Future<void> displayError(BuildContext context, Exception e) async {
