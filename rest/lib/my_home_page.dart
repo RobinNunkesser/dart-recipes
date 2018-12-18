@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
-import 'response_entity.dart';
 import 'input_boundary.dart';
 import 'interactor.dart';
 import 'output_boundary.dart';
+import 'response_view_model.dart';
+import 'package:scoped_model/scoped_model.dart';
 
 class MyHomePage extends StatefulWidget {
   MyHomePage({Key key, this.title}) : super(key: key);
-
   final String title;
 
   @override
@@ -14,18 +14,17 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> implements OutputBoundary {
-  InputBoundary inputBoundary = Interactor();
-  ResponseEntity _response;
 
-  @override
-  void initState() {
-    super.initState();
-    inputBoundary.send(outputBoundary: this);
-  }
+  InputBoundary inputBoundary = Interactor();
+  final ResponseViewModel model = ResponseViewModel();
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    inputBoundary.send(outputBoundary: this);
+
+    return ScopedModel<ResponseViewModel>(
+      model: model,
+      child: Scaffold(
       appBar: AppBar(
         title: Text(widget.title),
       ),
@@ -34,17 +33,21 @@ class _MyHomePageState extends State<MyHomePage> implements OutputBoundary {
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
             Text('Response:'),
-            Text(_response.toString()),
+            ScopedModelDescendant<ResponseViewModel>(
+              builder: (context,child,model) => Text(model.description),
+            ),
           ],
         ),
       ),
-    );
+    ),
+    )
+    ;
   }
 
   @override
   receive({Future response}) {
     response
-        .then((value) => setState(() => _response = value))
+        .then((value) => model.description = value.toString())
         .catchError((error) => displayError(context, error));
   }
 
