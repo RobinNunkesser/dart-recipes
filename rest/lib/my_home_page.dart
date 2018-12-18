@@ -4,6 +4,7 @@ import 'interactor.dart';
 import 'output_boundary.dart';
 import 'response_view_model.dart';
 import 'package:scoped_model/scoped_model.dart';
+import 'response_entity.dart';
 
 class MyHomePage extends StatefulWidget {
   MyHomePage({Key key, this.title}) : super(key: key);
@@ -13,7 +14,7 @@ class MyHomePage extends StatefulWidget {
   _MyHomePageState createState() => _MyHomePageState();
 }
 
-class _MyHomePageState extends State<MyHomePage> implements OutputBoundary {
+class _MyHomePageState extends State<MyHomePage> implements OutputBoundary<ResponseEntity> {
 
   InputBoundary inputBoundary = Interactor();
   final ResponseViewModel model = ResponseViewModel();
@@ -45,7 +46,7 @@ class _MyHomePageState extends State<MyHomePage> implements OutputBoundary {
   }
 
   @override
-  receive({Future response}) {
+  receive({Future<ResponseEntity> response}) {
     response
         .then((value) => model.description = value.toString())
         .catchError((error) => displayError(context, error));

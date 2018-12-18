@@ -1,4 +1,4 @@
 
-abstract class OutputBoundary {
-  receive({Future response});
+abstract class OutputBoundary<T> {
+  receive({Future<T> response});
 }
