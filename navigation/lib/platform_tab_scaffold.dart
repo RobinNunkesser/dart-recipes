@@ -1,32 +1,20 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_platform_widgets/flutter_platform_widgets.dart';
+import 'material_tab_scaffold.dart';
 
 class PlatformTabScaffold
-    extends PlatformWidgetBase<CupertinoTabScaffold, Scaffold> {
-  final Widget child;
+    extends PlatformWidgetBase<CupertinoTabScaffold, MaterialTabScaffold> {
   final List<BottomNavigationBarItem> items;
   final List<Widget> tabs;
-  final int currentIndex;
-  final ValueChanged<int> itemChanged;
 
-  PlatformTabScaffold(
-      {this.child, this.items, this.tabs, this.currentIndex, this.itemChanged});
+  PlatformTabScaffold({this.items, this.tabs});
 
   @override
-  Scaffold createAndroidWidget(BuildContext context) {
-    var bottomNavigationBar = BottomNavigationBar(
+  MaterialTabScaffold createAndroidWidget(BuildContext context) {
+    return MaterialTabScaffold(
       items: items,
-      currentIndex: currentIndex,
-      onTap: itemChanged,
-      type: BottomNavigationBarType.fixed,
-    );
-
-    return Scaffold(
-      body: child,
-      bottomNavigationBar: BottomAppBar(
-        child: bottomNavigationBar,
-      ),
+      tabs: tabs,
     );
   }
 
