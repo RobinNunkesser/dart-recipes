@@ -8,8 +8,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'WebView Demo',
-      home: MyHomePage(title: 'WebView Demo'),
+      home: MyHomePage(),
     );
   }
 }
-
