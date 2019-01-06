@@ -3,9 +3,17 @@ import 'web_view_page.dart';
 import 'package:flutter/services.dart' show rootBundle;
 
 class MyHomePage extends StatelessWidget {
-  MyHomePage({Key key}) : super(key: key);
-
   final Future<String> _localHTML = rootBundle.loadString('assets/local.html');
+
+  void openWebViewPage(BuildContext context, String title, String initialUrl) {
+    Navigator.push(
+        context,
+        MaterialPageRoute<void>(
+            builder: (BuildContext context) => WebViewPage(
+                  title: title,
+                  initialUrl: initialUrl,
+                )));
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -18,15 +26,8 @@ class MyHomePage extends StatelessWidget {
           children: <Widget>[
             RaisedButton(
               child: Text('Standard WebView'),
-              onPressed: () {
-                Navigator.push(
-                    context,
-                    MaterialPageRoute<void>(
-                        builder: (BuildContext context) => WebViewPage(
-                              title: 'Standard WebView',
-                              initialUrl: "https://www.google.com",
-                            )));
-              },
+              onPressed: () => openWebViewPage(
+                  context, 'Standard WebView', "https://www.google.com"),
             ),
             FutureBuilder<String>(
                 future: _localHTML,
@@ -36,25 +37,15 @@ class MyHomePage extends StatelessWidget {
                     case ConnectionState.waiting:
                       return const CircularProgressIndicator();
                     default:
-                      if (snapshot.hasError)
-                        return Text('Error: ${snapshot.error}');
-                      else
-                        return RaisedButton(
-                          child: Text('Local WebView'),
-                          onPressed: () {
-                            Navigator.push(
-                                context,
-                                MaterialPageRoute<void>(
-                                    builder: (BuildContext context) =>
-                                        WebViewPage(
-                                          title: 'Local WebView',
-                                          initialUrl: Uri.dataFromString(
-                                                  snapshot.data,
-                                                  mimeType: 'text/html')
-                                              .toString(),
-                                        )));
-                          },
-                        );
+                      return RaisedButton(
+                        child: Text('Local WebView'),
+                        onPressed: () => openWebViewPage(
+                            context,
+                            'Local WebView',
+                            Uri.dataFromString(snapshot.data,
+                                    mimeType: 'text/html')
+                                .toString()),
+                      );
                   }
                 }),
           ],
