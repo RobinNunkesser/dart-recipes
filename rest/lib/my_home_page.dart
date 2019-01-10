@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
-import 'input_boundary.dart';
+import 'common/input_boundary.dart';
 import 'interactor.dart';
-import 'output_boundary.dart';
+import 'common/output_boundary.dart';
 import 'response_view_model.dart';
 import 'package:scoped_model/scoped_model.dart';
-import 'response_entity.dart';
 
 class MyHomePage extends StatefulWidget {
   MyHomePage({Key key, this.title}) : super(key: key);
@@ -14,8 +13,8 @@ class MyHomePage extends StatefulWidget {
   _MyHomePageState createState() => _MyHomePageState();
 }
 
-class _MyHomePageState extends State<MyHomePage> implements OutputBoundary<ResponseEntity> {
-
+class _MyHomePageState extends State<MyHomePage>
+    implements OutputBoundary<String> {
   InputBoundary inputBoundary = Interactor();
   final ResponseViewModel model = ResponseViewModel();
 
@@ -26,29 +25,28 @@ class _MyHomePageState extends State<MyHomePage> implements OutputBoundary<Respo
     return ScopedModel<ResponseViewModel>(
       model: model,
       child: Scaffold(
-      appBar: AppBar(
-        title: Text(widget.title),
-      ),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            Text('Response:'),
-            ScopedModelDescendant<ResponseViewModel>(
-              builder: (context,child,model) => Text(model.description),
-            ),
-          ],
+        appBar: AppBar(
+          title: Text(widget.title),
+        ),
+        body: Center(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: <Widget>[
+              Text('Response:'),
+              ScopedModelDescendant<ResponseViewModel>(
+                builder: (context, child, model) => Text(model.description),
+              ),
+            ],
+          ),
         ),
       ),
-    ),
-    )
-    ;
+    );
   }
 
   @override
-  receive({Future<ResponseEntity> response}) {
+  receive({Future<String> response}) {
     response
-        .then((value) => model.description = value.toString())
+        .then((value) => model.description = value)
         .catchError((error) => displayError(context, error));
   }
 

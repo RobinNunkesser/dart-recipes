@@ -10,7 +10,5 @@ class ResponseEntity {
       url: json['url'],
     );
   }
-
-  @override
-  String toString() => 'origin: $origin, url: $url';
+  
 }
