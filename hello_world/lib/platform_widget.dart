@@ -9,7 +9,7 @@ abstract class PlatformWidget<I extends Widget,A extends Widget> extends Statele
     } else if (Platform.isIOS) {
       return createIosWidget(context);
     }
-    return new Container();
+    return Container();
   }
 
   I createIosWidget(BuildContext context);
