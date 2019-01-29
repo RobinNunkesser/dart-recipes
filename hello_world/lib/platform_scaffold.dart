@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:hello_world/platform_widget.dart';
+import 'package:hello_world/hello_world.dart';
 
 class PlatformScaffold extends PlatformWidget<CupertinoPageScaffold, Scaffold> {
   final String title;
