@@ -1,9 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_platform_widgets/flutter_platform_widgets.dart';
-
-import 'item.dart';
-import 'platform_list_tile.dart';
+import 'package:list/list.dart';
 
 class SearchListPage extends StatefulWidget {
   SearchListPage({Key key, this.title}) : super(key: key);
@@ -15,7 +13,7 @@ class SearchListPage extends StatefulWidget {
 
 class _SearchListPageState extends State<SearchListPage> {
   var _searchview = TextEditingController();
-  var filteredItems = items;
+  List<Item> filteredItems = items;
 
   _SearchListPageState() {
     _searchview.addListener(() {
