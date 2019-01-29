@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'my_home_page.dart';
+import 'package:launch_url/launch_url.dart';
 
 void main() => runApp(MyApp());
 
