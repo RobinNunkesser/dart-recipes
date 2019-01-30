@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'my_home_page.dart';
+import 'package:webview/webview.dart';
 
 void main() => runApp(MyApp());
 

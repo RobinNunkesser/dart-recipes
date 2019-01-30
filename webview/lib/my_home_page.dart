@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'web_view_page.dart';
 import 'package:flutter/services.dart' show rootBundle;
+import 'package:webview/webview.dart';
 
 class MyHomePage extends StatelessWidget {
   final Future<String> _localHTML = rootBundle.loadString('assets/local.html');
