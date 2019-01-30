@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_platform_widgets/flutter_platform_widgets.dart';
-import 'material_tab_scaffold.dart';
+import 'package:navigation/navigation.dart';
 
 class PlatformTabScaffold
     extends PlatformWidgetBase<CupertinoTabScaffold, MaterialTabScaffold> {

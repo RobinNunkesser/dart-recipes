@@ -1,12 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_platform_widgets/flutter_platform_widgets.dart';
-
-import 'flag_page.dart';
-import 'home_page.dart';
-import 'book_page.dart';
-import 'phone_page.dart';
-import 'platform_tab_scaffold.dart';
+import 'package:navigation/navigation.dart';
 
 class MyHomePage extends StatefulWidget {
   MyHomePage({Key key}) : super(key: key);
