@@ -1,5 +1,5 @@
-import 'package:rest/common/presenter.dart';
-import 'response_entity.dart';
+import 'package:rest/rest.dart';
+import 'package:rest/clean_arch/clean_arch.dart';
 
 class ResponsePresenter implements Presenter<ResponseEntity, String> {
   @override

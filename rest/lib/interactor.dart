@@ -1,11 +1,9 @@
-import 'common/input_boundary.dart';
-import 'common/output_boundary.dart';
-import 'http_bin_gateway.dart';
-import 'response_presenter.dart';
+import 'package:rest/rest.dart';
+import 'package:rest/clean_arch/clean_arch.dart';
 
 class Interactor implements InputBoundary {
   @override
-  send({request, OutputBoundary outputBoundary}) async {
+  void send({dynamic request, OutputBoundary outputBoundary}) async {
     var response = HttpBinGateway().fetchData()
     .then((value) => ResponsePresenter().present(value));
     outputBoundary.receive(response: response);

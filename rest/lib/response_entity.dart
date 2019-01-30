@@ -6,8 +6,8 @@ class ResponseEntity {
 
   factory ResponseEntity.fromJson(Map<String, dynamic> json) {
     return ResponseEntity(
-      origin: json['origin'],
-      url: json['url'],
+      origin: json['origin'] as String,
+      url: json['url'] as String,
     );
   }
   

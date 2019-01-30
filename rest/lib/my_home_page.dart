@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
-import 'common/input_boundary.dart';
-import 'interactor.dart';
-import 'common/output_boundary.dart';
-import 'response_view_model.dart';
 import 'package:scoped_model/scoped_model.dart';
+import 'package:rest/rest.dart';
+import 'package:rest/clean_arch/clean_arch.dart';
 
 class MyHomePage extends StatefulWidget {
   MyHomePage({Key key, this.title}) : super(key: key);
@@ -44,10 +42,10 @@ class _MyHomePageState extends State<MyHomePage>
   }
 
   @override
-  receive({Future<String> response}) {
+  void receive({Future<String> response}) {
     response
         .then((value) => model.description = value)
-        .catchError((error) => displayError(context, error));
+        .catchError((error) => displayError(context, error as Exception));
   }
 
   Future<void> displayError(BuildContext context, Exception e) async {
