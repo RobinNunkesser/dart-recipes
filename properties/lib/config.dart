@@ -1,1 +1,1 @@
-const KEY = 'value';
+const String KEY = 'value';
