@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_platform_widgets/flutter_platform_widgets.dart';
 
 class PlatformPicker extends PlatformWidgetBase<DecoratedBox, InputDecorator> {
-  String label;
+  final String label;
   final int selectedIndex;
   final List<String> items;
   final ValueChanged<String> onChanged;

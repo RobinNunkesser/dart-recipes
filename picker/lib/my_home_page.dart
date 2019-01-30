@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
-import 'platform_picker.dart';
 import 'package:flutter_platform_widgets/flutter_platform_widgets.dart';
+import 'package:picker/picker.dart';
 
 class MyHomePage extends StatefulWidget {
   MyHomePage({Key key, this.title}) : super(key: key);
@@ -16,6 +16,7 @@ class _MyHomePageState extends State<MyHomePage> {
   final List<String> _allActivities = <String>['Entry 1', 'Entry 2', 'Entry 3'];
   int _selectedIndex = 2;
 
+  @override
   Widget build(BuildContext context) {
     return PlatformScaffold(
       appBar: PlatformAppBar(

@@ -11,6 +11,7 @@ class _MyMaterialHomePageState extends State<MyMaterialHomePage> {
   final List<String> _allActivities = <String>['Entry 1', 'Entry 2', 'Entry 3'];
   int _selectedIndex = 2;
 
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(

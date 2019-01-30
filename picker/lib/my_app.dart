@@ -1,11 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
-import 'platform_app.dart';
-import 'my_home_page.dart';
-import 'my_material_home_page.dart';
+import 'package:picker/picker.dart';
 
 class MyApp extends StatelessWidget {
-  var _material = true;
+  final _material = true;
 
   @override
   Widget build(BuildContext context) {
