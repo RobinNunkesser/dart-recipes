@@ -6,7 +6,7 @@ class MaterialTabScaffold extends StatefulWidget {
   MaterialTabScaffold({this.tabs, this.items});
 
   @override
-  _MaterialTabScaffoldState createState() => new _MaterialTabScaffoldState();
+  _MaterialTabScaffoldState createState() => _MaterialTabScaffoldState();
 }
 
 class _MaterialTabScaffoldState extends State<MaterialTabScaffold> {
