@@ -1,6 +1,6 @@
 import 'package:scoped_model/scoped_model.dart';
 import 'package:flutter/material.dart';
-import 'counter_model.dart';
+import 'package:scoped_model_recipe/scoped_model_recipe.dart';
 
 class CounterHome extends StatelessWidget {
   final String title;

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'counter_home.dart';
+import 'package:scoped_model_recipe/scoped_model_recipe.dart';
 
 void main() => runApp(MyApp());
 
