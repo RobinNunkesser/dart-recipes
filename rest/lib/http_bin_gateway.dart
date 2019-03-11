@@ -4,12 +4,12 @@ import 'package:rest/rest.dart';
 
 class HttpBinGateway {
 
-  Future<ResponseEntity> fetchData() async {
+  Future<HttpRequestModel> fetchData() async {
 
     try {
       final httpResponse = await http.get('https://httpbin.org/get');
       final responseJson = json.decode(httpResponse.body);
-      return ResponseEntity.fromJson(responseJson as Map<String,dynamic>);
+      return HttpRequestModel.fromJson(responseJson as Map<String,dynamic>);
     } catch (error) {
       return Future.error(error);
     }

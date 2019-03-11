@@ -1,3 +1,3 @@
-abstract class Presenter<Entity,ViewModel> {
-  ViewModel present(Entity entity);
+abstract class Presenter<Model,ViewModel> {
+  ViewModel present(Model model);
 }

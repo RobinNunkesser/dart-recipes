@@ -12,15 +12,15 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage>
-    implements OutputBoundary<String> {
-  InputBoundary inputBoundary = Interactor();
-  final ResponseViewModel model = ResponseViewModel();
+    implements Displayer<String> {
+  UseCase inputBoundary = GetHttpRequestInteractor();
+  final HttpRequestViewModel model = HttpRequestViewModel();
 
   @override
   Widget build(BuildContext context) {
-    inputBoundary.send(outputBoundary: this);
+    inputBoundary.execute(displayer: this);
 
-    return ScopedModel<ResponseViewModel>(
+    return ScopedModel<HttpRequestViewModel>(
       model: model,
       child: Scaffold(
         appBar: AppBar(
@@ -31,7 +31,7 @@ class _MyHomePageState extends State<MyHomePage>
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
               Text('Response:'),
-              ScopedModelDescendant<ResponseViewModel>(
+              ScopedModelDescendant<HttpRequestViewModel>(
                 builder: (context, child, model) => Text(model.description),
               ),
             ],
@@ -42,8 +42,8 @@ class _MyHomePageState extends State<MyHomePage>
   }
 
   @override
-  void receive({Future<String> response}) {
-    response
+  void display({Future<String> result}) {
+    result
         .then((value) => model.description = value)
         .catchError((error) => displayError(context, error as Exception));
   }
