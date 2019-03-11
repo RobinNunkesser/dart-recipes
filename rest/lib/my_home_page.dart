@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:scoped_model/scoped_model.dart';
 import 'package:rest/rest.dart';
-import 'package:rest/clean_arch/clean_arch.dart';
+import 'package:basic_clean_arch/basic_clean_arch.dart';
 
 class MyHomePage extends StatefulWidget {
   MyHomePage({Key key, this.title}) : super(key: key);
@@ -13,12 +13,12 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage>
     implements Displayer<String> {
-  UseCase inputBoundary = GetHttpRequestInteractor();
+  UseCase interactor = GetHttpRequestInteractor();
   final HttpRequestViewModel model = HttpRequestViewModel();
 
   @override
   Widget build(BuildContext context) {
-    inputBoundary.execute(displayer: this);
+    interactor.execute(displayer: this);
 
     return ScopedModel<HttpRequestViewModel>(
       model: model,
