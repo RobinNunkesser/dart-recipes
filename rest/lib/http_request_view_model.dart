@@ -1,14 +1,13 @@
-import 'package:flutter/widgets.dart';
-import 'package:scoped_model/scoped_model.dart';
+import 'dart:async';
 
-class HttpRequestViewModel extends Model {
-  String _description = "Loading...";
-  String get description => _description;
-  set description(String value) {
-    _description = value;
-    notifyListeners();
+class HttpRequestViewModel {
+  final _resultStreamController = StreamController<String>();
+
+  Stream<String> get resultStream => _resultStreamController.stream;
+
+  set result(String value) => _resultStreamController.sink.add(value);
+
+  void dispose() {
+    _resultStreamController.close();
   }
-
-  static HttpRequestViewModel of(BuildContext context) =>
-      ScopedModel.of<HttpRequestViewModel>(context);
 }

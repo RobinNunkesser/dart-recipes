@@ -1,7 +1,6 @@
 import 'package:basic_clean_arch/basic_clean_arch.dart';
 import 'package:flutter/material.dart';
 import 'package:rest/rest.dart';
-import 'package:scoped_model/scoped_model.dart';
 
 class MyHomePage extends StatefulWidget {
   MyHomePage({Key key, this.title}) : super(key: key);
@@ -14,36 +13,43 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage>
     implements Displayer<String> {
   UseCase interactor = GetHttpRequestInteractor();
-  final HttpRequestViewModel model = HttpRequestViewModel();
+  HttpRequestViewModel _viewModel;
+
+  @override
+  void initState() {
+    _viewModel = HttpRequestViewModel();
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
     interactor.execute(displayer: this);
 
-    return ScopedModel<HttpRequestViewModel>(
-      model: model,
-      child: Scaffold(
-        appBar: AppBar(
-          title: Text(widget.title),
-        ),
-        body: Center(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: <Widget>[
-              Text('Response:'),
-              ScopedModelDescendant<HttpRequestViewModel>(
-                builder: (context, child, model) => Text(model.description),
-              ),
-            ],
+    return Scaffold(
+      appBar: AppBar(
+        title: Text(widget.title),
+      ),
+      body: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: <Widget>[
+            Text('Response:'),
+            StreamBuilder<String>(
+              stream: _viewModel.resultStream,
+              initialData: "Loading...",
+              builder: (context, snapshot) {
+                return Text(snapshot.data);
+              },
+            ),
+          ],
           ),
         ),
-      ),
     );
   }
 
   @override
   void display({String result, resultCode = 0}) {
-    model.description = result;
+    _viewModel.result = result;
   }
 
   @override
