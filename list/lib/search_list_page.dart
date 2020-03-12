@@ -1,6 +1,5 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_platform_widgets/flutter_platform_widgets.dart';
 import 'package:list/list.dart';
 
 class SearchListPage extends StatefulWidget {
@@ -32,8 +31,8 @@ class _SearchListPageState extends State<SearchListPage> {
 
   @override
   Widget build(BuildContext context) {
-    return PlatformScaffold(
-        appBar: PlatformAppBar(
+    return Scaffold(
+        appBar: AppBar(
           title: Text(widget.title),
         ),
         body: SafeArea(
@@ -51,9 +50,10 @@ class _SearchListPageState extends State<SearchListPage> {
           Flexible(
             child: ListView.builder(
                 itemCount: filteredItems.length,
-                itemBuilder: (context, index) => PlatformListTile(
-                      title: filteredItems[index].title,
-                      subtitle: filteredItems[index].subtitle,
+                itemBuilder: (context, index) =>
+                    ListTile(
+                      title: Text(filteredItems[index].title),
+                      subtitle: Text(filteredItems[index].subtitle),
                     )),
           ),
         ])));

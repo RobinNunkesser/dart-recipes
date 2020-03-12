@@ -4,9 +4,10 @@ import 'package:list/list.dart';
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return PlatformApp(
+    return MaterialApp(
       title: 'List Recipe',
-      home: SearchListPage(title: 'List Recipe'),//MyHomePage(title: 'List Recipe'),
+      home: MyHomePage(
+          title: 'List Recipe'), //SearchListPage(title: 'List Recipe'),
     );
   }
 }
