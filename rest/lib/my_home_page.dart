@@ -1,7 +1,7 @@
-import 'package:flutter/material.dart';
-import 'package:scoped_model/scoped_model.dart';
-import 'package:rest/rest.dart';
 import 'package:basic_clean_arch/basic_clean_arch.dart';
+import 'package:flutter/material.dart';
+import 'package:rest/rest.dart';
+import 'package:scoped_model/scoped_model.dart';
 
 class MyHomePage extends StatefulWidget {
   MyHomePage({Key key, this.title}) : super(key: key);
@@ -42,13 +42,16 @@ class _MyHomePageState extends State<MyHomePage>
   }
 
   @override
-  void display({Future<String> result}) {
-    result
-        .then((value) => model.description = value)
-        .catchError((error) => displayError(context, error as Exception));
+  void display({String result, resultCode = 0}) {
+    model.description = result;
   }
 
-  Future<void> displayError(BuildContext context, Exception e) async {
+  @override
+  void displayError(Exception error) {
+    showError(context, error);
+  }
+
+  Future<void> showError(BuildContext context, Exception e) async {
     return showDialog<void>(
       context: context,
       barrierDismissible: false, // user must tap button!
