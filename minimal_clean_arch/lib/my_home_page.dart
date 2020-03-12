@@ -1,6 +1,6 @@
-import 'package:minimal_clean_arch/minimal_clean_arch.dart';
 import 'package:basic_clean_arch/basic_clean_arch.dart';
 import 'package:flutter/material.dart';
+import 'package:minimal_clean_arch/minimal_clean_arch.dart';
 
 class MyHomePage extends StatefulWidget {
   MyHomePage({Key key, this.title}) : super(key: key);
@@ -27,9 +27,7 @@ class _MyHomePageState extends State<MyHomePage> implements Displayer<String> {
               onPressed: () => MinimalInteractor().execute(displayer: this),
               child: Text('Start'),
             ),
-            Text(
-              '$_result'
-            ),
+            Text('$_result'),
           ],
         ),
       ),
@@ -37,7 +35,12 @@ class _MyHomePageState extends State<MyHomePage> implements Displayer<String> {
   }
 
   @override
-  void display({Future<String> result}) {
-    result.then((value) => setState(() => _result = value));
+  void display({String result, resultCode = 0}) {
+    setState(() => _result = result);
+  }
+
+  @override
+  void displayError(Exception error) {
+    setState(() => _result = error.toString());
   }
 }
