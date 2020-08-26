@@ -5,7 +5,10 @@ addons:
     packages:
       - lib32stdc++6
 
-env: 
+env:
+    - PROJECT="basic_interaction" 
+    - PROJECT="navigation"
+    - PROJECT="mvvm" 
     - PROJECT="money"
     - PROJECT="ui_testing"
 
