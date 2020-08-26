@@ -7,6 +7,7 @@ addons:
 
 env:
     - PROJECT="basic_interaction" 
+    - PROJECT="drawer_navigation"
     - PROJECT="navigation"
     - PROJECT="mvvm" 
     - PROJECT="money"
