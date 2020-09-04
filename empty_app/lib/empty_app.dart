@@ -1,0 +1,1 @@
+export 'package:empty_app/my_app.dart';
