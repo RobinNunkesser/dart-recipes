@@ -20,11 +20,13 @@ env:
     - PROJECT="money"
     - PROJECT="mvvm"
     - PROJECT="picker"
+    - PROJECT="placeholder_posts"
     - PROJECT="properties"
     - PROJECT="rest"
     - PROJECT="scoped_model_recipe"
     - PROJECT="settings"
     - PROJECT="ui_testing"
+    - PROJECT="ultimate_answer"
     - PROJECT="webview"
 
 install:
@@ -34,6 +36,20 @@ install:
 script:
     - cd $PROJECT
     - ../flutter/bin/flutter test    
+    - | 
+      if [[ -d "core" ]]
+      then 
+        cd core
+        ../../flutter/bin/flutter test    
+        cd ..
+      fi  
+    - | 
+      if [[ -d "infrastructure" ]]
+      then 
+        cd infrastructure
+        ../../flutter/bin/flutter test    
+        cd ..
+      fi  
     - cd ..
 
 cache:
