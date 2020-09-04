@@ -6,11 +6,26 @@ addons:
       - lib32stdc++6
 
 env:
-    - PROJECT="basic_interaction" 
+    - PROJECT="async_recipe"
+    - PROJECT="basic_interaction"
     - PROJECT="drawer_navigation"
-    - PROJECT="mvvm" 
+    - PROJECT="empty_app"
+    - PROJECT="hello_world"
+    - PROJECT="hello_world_custom"
+    - PROJECT="hello_world_themed"
+    - PROJECT="launch_url"
+    - PROJECT="license"
+    - PROJECT="list"
+    - PROJECT="minimal_clean_arch"
     - PROJECT="money"
+    - PROJECT="mvvm"
+    - PROJECT="picker"
+    - PROJECT="properties"
+    - PROJECT="rest"
+    - PROJECT="scoped_model_recipe"
+    - PROJECT="settings"
     - PROJECT="ui_testing"
+    - PROJECT="webview"
 
 install:
   - git clone https://github.com/flutter/flutter.git -b stable
