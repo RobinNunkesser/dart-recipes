@@ -19,7 +19,6 @@ env:
     - PROJECT="minimal_clean_arch"
     - PROJECT="money"
     - PROJECT="mvvm"
-    - PROJECT="picker"
     - PROJECT="placeholder_posts"
     - PROJECT="properties"
     - PROJECT="rest"
