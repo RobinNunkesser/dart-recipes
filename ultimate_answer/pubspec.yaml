@@ -32,6 +32,9 @@ dependencies:
   core:
     path: ./core/
 
+  infrastructure:
+    path: ./infrastructure/
+
 dev_dependencies:
   flutter_test:
     sdk: flutter
