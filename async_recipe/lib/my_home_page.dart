@@ -1,3 +1,4 @@
+import 'package:async_recipe/async_example.dart';
 import 'package:flutter/material.dart';
 
 class MyHomePage extends StatefulWidget {
@@ -18,20 +19,8 @@ class _MyHomePageState extends State<MyHomePage> {
   void call() {
     print('Synchronous start');
     print('Asynchronous call');
-    asyncMethod();
+    AsyncExample().asyncMethod();
     print('Synchronous end');
-  }
-
-  void asyncMethod() async {
-    asyncMethodWithReturn()
-    .then((value) => print('Asynchronous return $value'))
-    .catchError((e) => print('Returned error $e'));
-  }
-
-  Future<int> asyncMethodWithReturn() async {
-    await Future.delayed(Duration(seconds: 4),() {});
-    //return Future.error(Exception("Error message"));
-    return 42;
   }
 
   @override
