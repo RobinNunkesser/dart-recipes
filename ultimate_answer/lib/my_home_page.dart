@@ -43,10 +43,11 @@ class _MyHomePageState extends State<MyHomePage> {
   }
 
   void _start() {
-    service.execute(
-        inDTO: GetAnswerCommandDTO(_questionTextEditingController.text),
-        onValue: success,
-        onError: failure);
+    service
+        .execute(
+            inDTO: GetAnswerCommandDTO(_questionTextEditingController.text))
+        .then(success)
+        .catchError(failure);
   }
 
   void success(String value) {

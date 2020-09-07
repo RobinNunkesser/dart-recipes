@@ -8,13 +8,7 @@ class GetAnswerCommand implements CommandHandler<GetAnswerCommandDTO, String> {
   GetAnswerCommand(this.superComputer);
 
   @override
-  void execute(
-      {GetAnswerCommandDTO inDTO,
-      Function(String value) onValue,
-      Function onError}) {
-    superComputer
-        .answer(inDTO.question)
-        .then((value) => onValue(value))
-        .catchError((error) => onError(error));
+  Future<String> execute({GetAnswerCommandDTO inDTO}) {
+    return superComputer.answer(inDTO.question);
   }
 }
