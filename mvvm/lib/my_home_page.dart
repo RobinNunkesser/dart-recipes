@@ -49,23 +49,17 @@ class _MyHomePageState extends State<MyHomePage> {
             StreamBuilder<String>(
               stream: _viewModel.forenameStream,
               initialData: "",
-              builder: (context, snapshot) {
-                return Text(snapshot.data);
-              },
+              builder: (context, snapshot) => Text(snapshot.data),
             ),
             StreamBuilder<String>(
               stream: _viewModel.surnameStream,
               initialData: "",
-              builder: (context, snapshot) {
-                return Text(snapshot.data);
-              },
+              builder: (context, snapshot) => Text(snapshot.data),
             ),
             StreamBuilder<String>(
               stream: _viewModel.greetingStream,
               initialData: "",
-              builder: (context, snapshot) {
-                return Text(snapshot.data);
-              },
+              builder: (context, snapshot) => Text(snapshot.data),
             ),
           ],
         ),
