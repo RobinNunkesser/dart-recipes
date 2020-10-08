@@ -10,7 +10,8 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Flutter Demo',
-      theme: PlatformTheme(),
+      theme: PlatformThemeData.light(),
+      darkTheme: PlatformThemeData.dark(),
       home: MyHomePage(title: 'Flutter Demo Home Page'),
     );
   }
@@ -25,7 +26,6 @@ class MyHomePage extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: Text(title),
-        elevation: platformAppBarElevation,
       ),
       body: Center(
         child: Column(
