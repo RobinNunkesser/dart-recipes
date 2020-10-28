@@ -13,9 +13,7 @@ dependencies:
     sdk: flutter
 
   http: ^0.12.2
-
-  common:
-    path: ../common/
+  explicit_architecture: ^0.0.1
 
   core:
     path: ../core/

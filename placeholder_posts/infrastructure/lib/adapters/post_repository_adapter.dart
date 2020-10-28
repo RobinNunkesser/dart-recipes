@@ -1,5 +1,5 @@
-import 'package:common/repository.dart';
 import 'package:core/post_entity.dart';
+import 'package:explicit_architecture/explicit_architecture.dart';
 import 'package:infrastructure/adapters/post_mappings.dart';
 import 'package:infrastructure/json_placeholder_api.dart';
 
