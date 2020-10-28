@@ -31,6 +31,7 @@ class _MyHomePageState extends State<MyHomePage> {
       body: ListView.builder(
           itemCount: items.length,
           itemBuilder: (context, index) => ListTile(
+            leading: Icon(Icons.info),
                 title: Text(items[index].title),
                 subtitle: Text(items[index].subtitle),
               )),
