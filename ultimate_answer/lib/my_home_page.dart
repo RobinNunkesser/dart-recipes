@@ -47,7 +47,7 @@ class _MyHomePageState extends State<MyHomePage> {
         .execute(
             inDTO: GetAnswerCommandDTO(_questionTextEditingController.text))
         .then(success)
-        .catchError((error) => failure(error));
+        .catchError(failure);
   }
 
   void success(String value) {
