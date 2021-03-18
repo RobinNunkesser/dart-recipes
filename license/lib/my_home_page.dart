@@ -14,8 +14,15 @@ class MyHomePage extends StatelessWidget {
         body: Center(
           child: IconButton(
             icon: Icon(Icons.info),
-            onPressed: () => showLicensePage(context: context),
+            onPressed: () => showAboutDialog(
+                context: context,
+                children: [
+                  Text('This is an About Dialog in Flutter'),
+                ]
+            ),
           ),
         ));
   }
+
+
 }
