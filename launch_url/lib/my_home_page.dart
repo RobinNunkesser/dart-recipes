@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
 
+const _url = 'https://flutter.dev';
+
 class MyHomePage extends StatelessWidget {
   final String title;
 
@@ -13,7 +15,7 @@ class MyHomePage extends StatelessWidget {
         title: Text(title),
       ),
       body: Center(
-        child: RaisedButton(
+        child: ElevatedButton(
           onPressed: _launchURL,
           child: Text('Show Flutter homepage'),
         ),
@@ -21,12 +23,6 @@ class MyHomePage extends StatelessWidget {
     );
   }
 
-  _launchURL() async {
-    const url = 'https://flutter.io';
-    if (await canLaunch(url)) {
-      await launch(url);
-    } else {
-      throw 'Could not launch $url';
-    }
-  }
+  void _launchURL() async =>
+      await canLaunch(_url) ? await launch(_url) : throw 'Could not launch $_url';
 }
