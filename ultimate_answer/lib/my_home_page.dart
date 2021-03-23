@@ -1,5 +1,4 @@
 import 'package:core/get_answer_command.dart';
-import 'package:core/get_answer_command_dto.dart';
 import 'package:flutter/material.dart';
 import 'package:infrastructure/adapters/super_computer_adapter.dart';
 
@@ -45,7 +44,7 @@ class _MyHomePageState extends State<MyHomePage> {
   void _start() {
     service
         .execute(
-            inDTO: GetAnswerCommandDTO(_questionTextEditingController.text))
+            inDTO: _questionTextEditingController.text)
         .then(success)
         .catchError(failure);
   }

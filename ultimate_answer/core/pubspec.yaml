@@ -12,8 +12,7 @@ dependencies:
   flutter:
     sdk: flutter
 
-  common:
-    path: ../common/
+  explicit_architecture: ^0.0.1
 
   infrastructure:
     path: ../infrastructure/
