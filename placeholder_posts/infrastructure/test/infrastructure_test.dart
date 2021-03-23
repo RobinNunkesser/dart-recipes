@@ -25,7 +25,7 @@ void main() {
     var post = await api
         .createPost(Post(userId: 1, id: 101, title: "foo", body: "bar"));
     expect(post.userId, 1);
-    expect(post.id, 1);
+    expect(post.id, 101);
     expect(post.title, "foo");
     expect(post.body, "bar");
   });

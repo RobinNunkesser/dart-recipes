@@ -1,7 +1,7 @@
 import 'package:core/get_post_command.dart';
-import 'package:core/get_post_command_dto.dart';
 import 'package:flutter/material.dart';
 import 'package:infrastructure/adapters/post_repository_adapter.dart';
+import 'get_post_command_dto.dart';
 
 class MyHomePage extends StatefulWidget {
   MyHomePage({Key key}) : super(key: key);
@@ -45,7 +45,7 @@ class _MyHomePageState extends State<MyHomePage> {
   void _start() {
     service
         .execute(
-            inDTO: GetPostCommandDTO(id: int.parse(_idTextEditingController.text)))
+            inDTO: GetPostCommandDTO(int.parse(_idTextEditingController.text)))
         .then(success)
         .catchError((error) => failure(error));
   }

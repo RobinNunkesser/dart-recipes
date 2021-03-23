@@ -1,21 +1,21 @@
-import 'package:core/post_entity.dart';
 import 'package:explicit_architecture/explicit_architecture.dart';
 import 'package:infrastructure/adapters/post_mappings.dart';
 import 'package:infrastructure/json_placeholder_api.dart';
+import 'package:core/ports/abstract_post.dart';
 
-class PostRepositoryAdapter implements Repository<int, PostEntity> {
+class PostRepositoryAdapter implements Repository<int, AbstractPost> {
   var adaptee = JSONPlaceholderAPI();
 
   @override
-  Future<int> create(PostEntity entity) =>
+  Future<int> create(AbstractPost entity) =>
       adaptee.createPost(entity.toPost()).then((value) => value.id);
 
   @override
-  Future<PostEntity> retrieve(int id) =>
+  Future<AbstractPost> retrieve(int id) =>
       adaptee.readPost(id).then((value) => value.toPostEntity());
 
   @override
-  Future<List<PostEntity>> retrieveAll() => adaptee
+  Future<List<AbstractPost>> retrieveAll() => adaptee
       .readAllPosts()
       .then((value) => value.map((e) => e.toPostEntity()).toList());
 
@@ -25,7 +25,7 @@ class PostRepositoryAdapter implements Repository<int, PostEntity> {
   }
 
   @override
-  Future<bool> update(int id, PostEntity entity) {
+  Future<bool> update(int id, AbstractPost entity) {
     throw UnimplementedError();
   }
 }

@@ -1,13 +1,14 @@
-import 'package:core/get_post_command_dto.dart';
-import 'package:core/post_entity.dart';
 import 'package:explicit_architecture/explicit_architecture.dart';
+import 'ports/abstract_get_post_command.dart';
+import 'ports/abstract_post.dart';
+import 'ports/abstract_post_id.dart';
 
-class GetPostCommand implements Command<GetPostCommandDTO, String> {
-  Repository<int, PostEntity> repository;
+class GetPostCommand implements AbstractGetPostCommand {
+  Repository<int, AbstractPost> repository;
 
   GetPostCommand(this.repository);
 
   @override
-  Future<String> execute({GetPostCommandDTO inDTO}) =>
+  Future<String> execute({AbstractPostId inDTO}) =>
       repository.retrieve(inDTO.id).then((value) => value.toString());
 }
