@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart' show rootBundle;
-import 'package:webview/webview.dart';
+import 'package:webview/web_view_page.dart';
 
 class MyHomePage extends StatelessWidget {
   final Future<String> _localHTML = rootBundle.loadString('assets/local.html');
@@ -10,9 +10,9 @@ class MyHomePage extends StatelessWidget {
         context,
         MaterialPageRoute<void>(
             builder: (BuildContext context) => WebViewPage(
-                  title: title,
-                  initialUrl: initialUrl,
-                )));
+              title: title,
+              initialUrl: initialUrl,
+            )));
   }
 
   @override
@@ -24,7 +24,7 @@ class MyHomePage extends StatelessWidget {
       body: Center(
         child: Column(
           children: <Widget>[
-            RaisedButton(
+            ElevatedButton(
               child: Text('Standard WebView'),
               onPressed: () => openWebViewPage(
                   context, 'Standard WebView', "https://www.google.com"),
@@ -37,13 +37,13 @@ class MyHomePage extends StatelessWidget {
                     case ConnectionState.waiting:
                       return const CircularProgressIndicator();
                     default:
-                      return RaisedButton(
+                      return ElevatedButton(
                         child: Text('Local WebView'),
                         onPressed: () => openWebViewPage(
                             context,
                             'Local WebView',
                             Uri.dataFromString(snapshot.data,
-                                    mimeType: 'text/html')
+                                mimeType: 'text/html')
                                 .toString()),
                       );
                   }

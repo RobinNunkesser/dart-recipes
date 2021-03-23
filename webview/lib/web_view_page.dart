@@ -15,7 +15,7 @@ class WebViewPage extends StatelessWidget {
       ),
       body: WebView(
         initialUrl: initialUrl,
-      ),      
+      ),
     );
   }
 }
