@@ -2,21 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:mvx/user.dart';
 import 'package:provider/provider.dart';
 
-class MyHomePage extends StatefulWidget {
+class MyHomePage extends StatelessWidget {
   const MyHomePage({Key? key, required this.title}) : super(key: key);
 
   final String title;
-
-  @override
-  _MyHomePageState createState() => _MyHomePageState();
-}
-
-class _MyHomePageState extends State<MyHomePage> {
-
-  @override
-  void initState() {
-    super.initState();
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -24,7 +13,7 @@ class _MyHomePageState extends State<MyHomePage> {
       create: (context) => User(),
       child: Scaffold(
         appBar: AppBar(
-          title: Text(widget.title),
+          title: Text(title),
         ),
         body: Center(
           child: Consumer<User>(
