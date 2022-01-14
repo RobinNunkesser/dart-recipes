@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:core/get_answer_command.dart';
 import 'package:flutter/material.dart';
 import 'package:infrastructure/adapters/super_computer_adapter.dart';
@@ -43,17 +45,16 @@ class _MyHomePageState extends State<MyHomePage> {
 
   void _start() {
     service
-        .execute(
-            inDTO: _questionTextEditingController.text)
+        .execute(inDTO: _questionTextEditingController.text)
         .then(success)
-        .catchError(failure);
+        .catchError(handleError);
   }
 
   void success(String value) {
     setState(() => answer = value);
   }
 
-  void failure(Exception error) {
+  handleError(error) {
     setState(() => answer = error.toString());
   }
 }
