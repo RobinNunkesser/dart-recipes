@@ -1,9 +1,9 @@
-import 'package:explicit_architecture/explicit_architecture.dart';
+import 'package:common_ports/common_ports.dart';
 import 'package:infrastructure/adapters/post_mappings.dart';
 import 'package:infrastructure/json_placeholder_api.dart';
 import 'package:core/ports/abstract_post.dart';
 
-class PostRepositoryAdapter implements Repository<int, AbstractPost> {
+class PostRepositoryAdapter implements CrudRepository<int, AbstractPost> {
   var adaptee = JSONPlaceholderAPI();
 
   @override

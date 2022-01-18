@@ -1,10 +1,11 @@
-import 'package:explicit_architecture/explicit_architecture.dart';
+import 'package:common_ports/common_ports.dart';
+
 import 'ports/abstract_get_post_command.dart';
 import 'ports/abstract_post.dart';
 import 'ports/abstract_post_id.dart';
 
 class GetPostCommand implements AbstractGetPostCommand {
-  Repository<int, AbstractPost> repository;
+  CrudRepository<int, AbstractPost> repository;
 
   GetPostCommand(this.repository);
 
