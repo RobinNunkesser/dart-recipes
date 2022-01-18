@@ -1,19 +1,18 @@
 name: infrastructure
 description: A new Flutter project.
 version: 0.0.1
-author:
 homepage:
 
 environment:
-  sdk: ">=2.7.0 <3.0.0"
+  sdk: ">=2.12.0 <3.0.0"
   flutter: ">=1.17.0 <2.0.0"
 
 dependencies:
   flutter:
     sdk: flutter
 
-  http: ^0.12.2
-  common_ports: ^0.0.3
+  http: ^0.13.4
+  common_ports: ^0.0.5
 
   core:
     path: ../core/
@@ -21,6 +20,8 @@ dependencies:
 dev_dependencies:
   flutter_test:
     sdk: flutter
+
+publish_to: none
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec

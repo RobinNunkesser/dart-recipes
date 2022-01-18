@@ -7,7 +7,7 @@ class GetAnswerCommand implements AbstractGetAnswerCommand {
   GetAnswerCommand(this.superComputer);
 
   @override
-  Future<String> execute({String inDTO}) {
+  Future<String> execute(String inDTO) {
     return superComputer.answer(inDTO);
   }
 }

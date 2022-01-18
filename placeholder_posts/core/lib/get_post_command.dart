@@ -10,6 +10,6 @@ class GetPostCommand implements AbstractGetPostCommand {
   GetPostCommand(this.repository);
 
   @override
-  Future<String> execute({AbstractPostId inDTO}) =>
+  Future<String> execute(AbstractPostId inDTO) =>
       repository.retrieve(inDTO.id).then((value) => value.toString());
 }

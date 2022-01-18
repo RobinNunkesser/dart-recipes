@@ -5,15 +5,15 @@ class JSONPlaceholderAPI {
   var baseUrl = "https://jsonplaceholder.typicode.com";
 
   Future<Post> readPost(int id) async => http
-      .get("$baseUrl/posts/$id")
+      .get(Uri.parse("$baseUrl/posts/$id"))
       .then((http.Response r) => postFromJson(r.body));
 
   Future<Post> createPost(Post post) async => http.Client()
-      .post("$baseUrl/posts",
+      .post(Uri.parse("$baseUrl/posts"),
           headers: {'Content-type': 'application/json'}, body: postToJson(post))
       .then((http.Response r) => postFromJson(r.body));
 
   Future<List<Post>> readAllPosts() async => http
-      .get("$baseUrl/posts")
+      .get(Uri.parse("$baseUrl/posts"))
       .then((http.Response r) => postsFromJson(r.body));
 }

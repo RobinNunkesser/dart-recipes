@@ -1,11 +1,9 @@
-import 'dart:async';
-
 import 'package:core/get_answer_command.dart';
 import 'package:flutter/material.dart';
 import 'package:infrastructure/adapters/super_computer_adapter.dart';
 
 class MyHomePage extends StatefulWidget {
-  MyHomePage({Key key}) : super(key: key);
+  MyHomePage({Key? key}) : super(key: key);
 
   @override
   _MyHomePageState createState() => _MyHomePageState();
@@ -45,7 +43,7 @@ class _MyHomePageState extends State<MyHomePage> {
 
   void _start() {
     service
-        .execute(inDTO: _questionTextEditingController.text)
+        .execute(_questionTextEditingController.text)
         .then(success)
         .catchError(handleError);
   }

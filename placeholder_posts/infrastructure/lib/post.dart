@@ -13,10 +13,10 @@ String postToJson(Post data) => json.encode(data.toJson());
 
 class Post {
   Post({
-    this.userId,
-    this.id,
-    this.title,
-    this.body,
+    required this.userId,
+    required this.id,
+    required this.title,
+    required this.body,
   });
 
   int userId;

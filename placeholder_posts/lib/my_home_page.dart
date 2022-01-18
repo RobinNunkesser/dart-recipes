@@ -4,7 +4,7 @@ import 'package:infrastructure/adapters/post_repository_adapter.dart';
 import 'get_post_command_dto.dart';
 
 class MyHomePage extends StatefulWidget {
-  MyHomePage({Key key}) : super(key: key);
+  MyHomePage({Key? key}) : super(key: key);
 
   @override
   _MyHomePageState createState() => _MyHomePageState();
@@ -44,8 +44,7 @@ class _MyHomePageState extends State<MyHomePage> {
 
   void _start() {
     service
-        .execute(
-            inDTO: GetPostCommandDTO(int.parse(_idTextEditingController.text)))
+        .execute(GetPostCommandDTO(int.parse(_idTextEditingController.text)))
         .then(success)
         .catchError((error) => failure(error));
   }
@@ -73,7 +72,7 @@ class _MyHomePageState extends State<MyHomePage> {
             ),
           ),
           actions: <Widget>[
-            FlatButton(
+            ElevatedButton(
               child: Text('OK'),
               onPressed: () {
                 Navigator.of(context).pop();

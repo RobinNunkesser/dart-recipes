@@ -13,7 +13,11 @@ class PostEntity implements AbstractPost {
   @override
   var userId;
 
-  PostEntity({this.id, this.userId, this.title, this.body});
+  PostEntity(
+      {required this.id,
+      required this.userId,
+      required this.title,
+      required this.body});
 
   @override
   String toString() {
