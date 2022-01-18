@@ -1,10 +1,9 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 import 'group.dart';
 
 class GroupedListPage extends StatefulWidget {
-  GroupedListPage({Key key, this.title}) : super(key: key);
+  GroupedListPage({Key? key, required this.title}) : super(key: key);
   final String title;
 
   @override

@@ -4,7 +4,7 @@ class Group {
   String title;
   List<Item> items;
 
-  Group({this.title, this.items});
+  Group({required this.title, required this.items});
 }
 
 List<Group> groups = [

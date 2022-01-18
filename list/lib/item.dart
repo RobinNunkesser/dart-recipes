@@ -2,7 +2,7 @@ class Item {
   String title;
   String subtitle;
 
-  Item({this.title,this.subtitle});
+  Item({required this.title, required this.subtitle});
 }
 
 List<Item> items = [

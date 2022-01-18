@@ -1,10 +1,9 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 import 'item.dart';
 
 class MyHomePage extends StatefulWidget {
-  MyHomePage({Key key, this.title}) : super(key: key);
+  MyHomePage({Key? key, required this.title}) : super(key: key);
   final String title;
 
   @override
@@ -31,7 +30,7 @@ class _MyHomePageState extends State<MyHomePage> {
       body: ListView.builder(
           itemCount: items.length,
           itemBuilder: (context, index) => ListTile(
-            leading: Icon(Icons.info),
+                leading: Icon(Icons.info),
                 title: Text(items[index].title),
                 subtitle: Text(items[index].subtitle),
               )),

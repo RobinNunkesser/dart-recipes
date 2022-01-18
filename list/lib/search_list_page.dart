@@ -1,9 +1,8 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:list/list.dart';
 
 class SearchListPage extends StatefulWidget {
-  SearchListPage({Key key, this.title}) : super(key: key);
+  SearchListPage({Key? key, required this.title}) : super(key: key);
   final String title;
 
   @override
@@ -50,8 +49,7 @@ class _SearchListPageState extends State<SearchListPage> {
           Flexible(
             child: ListView.builder(
                 itemCount: filteredItems.length,
-                itemBuilder: (context, index) =>
-                    ListTile(
+                itemBuilder: (context, index) => ListTile(
                       title: Text(filteredItems[index].title),
                       subtitle: Text(filteredItems[index].subtitle),
                     )),
