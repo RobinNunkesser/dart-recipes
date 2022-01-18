@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 class MyHomePage extends StatelessWidget {
-  MyHomePage({Key key, this.title}) : super(key: key);
+  MyHomePage({Key? key, required this.title}) : super(key: key);
 
   final String title;
 
@@ -14,15 +14,10 @@ class MyHomePage extends StatelessWidget {
         body: Center(
           child: IconButton(
             icon: Icon(Icons.info),
-            onPressed: () => showAboutDialog(
-                context: context,
-                children: [
-                  Text('This is an About Dialog in Flutter'),
-                ]
-            ),
+            onPressed: () => showAboutDialog(context: context, children: [
+              Text('This is an About Dialog in Flutter'),
+            ]),
           ),
         ));
   }
-
-
 }

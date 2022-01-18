@@ -12,7 +12,7 @@ class Money {
 
   Money operator *(int multiplier) => new Money(amount * multiplier, currency);
 
-  Money operator +(Money addend) {
+  Money? operator +(Money addend) {
     if (addend.currency != currency) return null;
     return new Money(amount + addend.amount, currency);
   }
@@ -28,7 +28,7 @@ class Money {
   @override
   int get hashCode => amount.hashCode ^ currency.hashCode;
 
-  Money reduce(Bank bank, String to) {
+  Money? reduce(Bank bank, String to) {
     final rate = bank.rate(currency, to);
     if (rate == null) return null;
     return Money(amount ~/ rate, to);

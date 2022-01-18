@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 class SecondLevelPage extends StatelessWidget {
-  SecondLevelPage({Key key, this.value}) : super(key: key);
+  SecondLevelPage({Key? key, required this.value}) : super(key: key);
 
   final String value;
   @override
