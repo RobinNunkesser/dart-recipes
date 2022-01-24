@@ -1,56 +1,25 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart' show rootBundle;
-import 'package:webview/web_view_page.dart';
+import 'package:webview_flutter/webview_flutter.dart';
 
-class MyHomePage extends StatelessWidget {
-  final Future<String> _localHTML = rootBundle.loadString('assets/local.html');
+class MyHomePage extends StatefulWidget {
+  @override
+  State<MyHomePage> createState() => _MyHomePageState();
+}
 
-  void openWebViewPage(BuildContext context, String title, String initialUrl) {
-    Navigator.push(
-        context,
-        MaterialPageRoute<void>(
-            builder: (BuildContext context) => WebViewPage(
-              title: title,
-              initialUrl: initialUrl,
-            )));
+class _MyHomePageState extends State<MyHomePage> {
+  @override
+  void initState() {
+    super.initState();
+    // Enable virtual display.
+    if (Platform.isAndroid) WebView.platform = AndroidWebView();
   }
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text('WebView Demo'),
-      ),
-      body: Center(
-        child: Column(
-          children: <Widget>[
-            ElevatedButton(
-              child: Text('Standard WebView'),
-              onPressed: () => openWebViewPage(
-                  context, 'Standard WebView', "https://www.google.com"),
-            ),
-            FutureBuilder<String>(
-                future: _localHTML,
-                builder:
-                    (BuildContext context, AsyncSnapshot<String> snapshot) {
-                  switch (snapshot.connectionState) {
-                    case ConnectionState.waiting:
-                      return const CircularProgressIndicator();
-                    default:
-                      return ElevatedButton(
-                        child: Text('Local WebView'),
-                        onPressed: () => openWebViewPage(
-                            context,
-                            'Local WebView',
-                            Uri.dataFromString(snapshot.data,
-                                mimeType: 'text/html')
-                                .toString()),
-                      );
-                  }
-                }),
-          ],
-        ),
-      ),
+    return WebView(
+      initialUrl: 'https://flutter.dev',
     );
   }
 }
