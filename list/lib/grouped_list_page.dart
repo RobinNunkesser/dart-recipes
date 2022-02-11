@@ -1,35 +1,29 @@
+import 'package:common_ui/common_ui.dart';
 import 'package:flutter/material.dart';
 
-import 'group.dart';
+class GroupedListPage extends StatelessWidget {
+  GroupedListPage({Key? key}) : super(key: key);
 
-class GroupedListPage extends StatefulWidget {
-  GroupedListPage({Key? key, required this.title}) : super(key: key);
-  final String title;
+  final sections = [
+    ListSection(title: "Section 1", items: [
+      ListItem(title: "Section 1, Title 1", subtitle: "Subtitle 1"),
+      ListItem(title: "Section 1, Title 2", subtitle: "Subtitle 2"),
+    ]),
+    ListSection(title: "Section 2", items: [
+      ListItem(title: "Section 2, Title 1", subtitle: "Subtitle 1"),
+    ])
+  ];
 
-  @override
-  _GroupedListPageState createState() => _GroupedListPageState();
-}
-
-class _GroupedListPageState extends State<GroupedListPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(widget.title),
+        title: Text('Grouped List'),
       ),
       body: ListView.builder(
-          itemCount: groups.length,
-          itemBuilder: (context, index) => ExpansionTile(
-                title: Text(groups[index].title),
-                children: groups[index]
-                    .items
-                    .map((item) => ListTile(
-                          title: Text(item.title),
-                          subtitle: Text(item.subtitle),
-                        ))
-                    .toList(),
-                initiallyExpanded: true,
-              )),
+          itemCount: sections.length,
+          itemBuilder: (context, index) =>
+              SectionTile(section: sections[index])),
     );
   }
 }

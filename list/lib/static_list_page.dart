@@ -9,8 +9,12 @@ class StaticListPage extends StatelessWidget {
       ),
       body: ListView(
         children: [
-          ListTile(title: Text('Title 1'), subtitle: Text('Subtitle 1')),
+          ListTile(title: Text('Title 1')),
           ListTile(title: Text('Title 2'), subtitle: Text('Subtitle 2')),
+          ListTile(
+              leading: Icon(Icons.info),
+              title: Text('Title 3'),
+              subtitle: Text('Subtitle 3')),
         ],
       ),
     );

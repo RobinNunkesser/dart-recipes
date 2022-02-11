@@ -1,5 +1,5 @@
+import 'package:common_ui/common_ui.dart';
 import 'package:flutter/material.dart';
-import 'package:list/list.dart';
 
 class SearchListPage extends StatefulWidget {
   SearchListPage({Key? key, required this.title}) : super(key: key);
@@ -9,9 +9,15 @@ class SearchListPage extends StatefulWidget {
   _SearchListPageState createState() => _SearchListPageState();
 }
 
+final items = [
+  ListItem(title: "Title 1", subtitle: "Subtitle 1"),
+  ListItem(title: "Title 2", subtitle: "Subtitle 2"),
+  ListItem(title: "Title 3", subtitle: "Subtitle 3")
+];
+
 class _SearchListPageState extends State<SearchListPage> {
   var _searchview = TextEditingController();
-  List<Item> filteredItems = items;
+  List<ListItem> filteredItems = items;
 
   _SearchListPageState() {
     _searchview.addListener(() {
@@ -51,7 +57,7 @@ class _SearchListPageState extends State<SearchListPage> {
                 itemCount: filteredItems.length,
                 itemBuilder: (context, index) => ListTile(
                       title: Text(filteredItems[index].title),
-                      subtitle: Text(filteredItems[index].subtitle),
+                      subtitle: Text(filteredItems[index].subtitle!),
                     )),
           ),
         ])));
