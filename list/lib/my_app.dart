@@ -6,8 +6,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'List Recipe',
-      home:
-          //StaticListPage(),
+      home: //StaticListPage(),
           //DynamicListPage(title: 'Dynamic list'),
           //GroupedListPage(),
           SearchListPage(title: 'List Recipe'),

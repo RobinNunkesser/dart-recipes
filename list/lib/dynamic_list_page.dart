@@ -12,6 +12,7 @@ class DynamicListPage extends StatefulWidget {
 class _DynamicListPageState extends State<DynamicListPage> {
   final items = [
     ListItem(title: "Title 1", subtitle: "Subtitle 1"),
+    ListItem(title: "Title 2", subtitle: "Subtitle 2"),
   ];
 
   @override
